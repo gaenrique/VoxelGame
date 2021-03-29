@@ -5,5 +5,7 @@ cmake_minimum_required (VERSION 3.8)
 
 project ("VoxelGame")
 
-# Include sub-projects.
-add_subdirectory ("VoxelGame")
+add_subdirectory("Dependencies/glfw")
+
+add_subdirectory(VoxelGame)
+
