@@ -1,10 +1,8 @@
-cmake_minimum_required(VERSION 3.8)
+cmake_minimum_required(VERSION 3.8) 
 
 add_executable("VoxelGame" VoxelGame.cpp)
 
-# Link GLFW
-target_link_libraries(VoxelGame glfw)
+target_link_libraries("VoxelGame" glfw opengl32.lib glew32s.lib)
 
-find_package(OpenGL REQUIRED)
 
-target_link_libraries("VoxelGame" OpenGL::GL)
+
