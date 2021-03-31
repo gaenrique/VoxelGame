@@ -5,8 +5,9 @@ cmake_minimum_required (VERSION 3.8)
 
 project ("VoxelGame")
 
-# Linking to GLEW statically
 add_compile_definitions(GLEW_STATIC)
+add_compile_definitions(DEBUG)
+add_compile_definitions(STB_IMAGE_IMPLEMENTATION)
 
 add_subdirectory("Dependencies/glfw")
 
@@ -16,10 +17,9 @@ link_directories("Dependencies/glew/lib/Release/Win32")
 
 # Include stb_image directory
 include_directories("Dependencies/stb_image")
-add_compile_definitions(STB_IMAGE_IMPLEMENTATION)
 
 find_package(OpenGL REQUIRED)
 
-add_subdirectory(VoxelGame)
+add_subdirectory(src)
 
 

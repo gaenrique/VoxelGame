@@ -3,6 +3,8 @@
 
 #include <iostream>
 
+#include "Renderer/VertexArray.h"
+
 int main(void)
 {
     GLFWwindow* window;
@@ -29,11 +31,31 @@ int main(void)
         std::cout << "Error" << std::endl;
     }
 
+    float vertices[9] = {
+        -0.5f, -0.5f, 0.0f,
+        0.5f, -0.5f, 0.0f,
+        0.0f, 0.5f, 0.0f
+    };
+
+    unsigned int indices[3] = {
+        0, 1, 2
+    };
+
+    VertexArray va;
+    BufferLayout verticesLayout;
+    verticesLayout.InsertLayoutElement(3, false);
+    va.AddBuffer(VERTEX, vertices, sizeof(vertices), verticesLayout);
+    BufferLayout indicesLayout;
+    va.AddBuffer(INDEX, indices, sizeof(indices), indicesLayout);
+
     /* Loop until the user closes the window */
     while (!glfwWindowShouldClose(window))
     {
         /* Render here */
         glClear(GL_COLOR_BUFFER_BIT);
+
+        va.Bind();
+        glDrawArrays(GL_TRIANGLES, 0, 3);
 
         /* Swap front and back buffers */
         glfwSwapBuffers(window);
