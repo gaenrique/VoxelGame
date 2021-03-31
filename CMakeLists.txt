@@ -14,6 +14,10 @@ add_subdirectory("Dependencies/glfw")
 include_directories("Dependencies/glew/include")
 link_directories("Dependencies/glew/lib/Release/Win32")
 
+# Include stb_image directory
+include_directories("Dependencies/stb_image")
+add_compile_definitions(STB_IMAGE_IMPLEMENTATION)
+
 find_package(OpenGL REQUIRED)
 
 add_subdirectory(VoxelGame)
