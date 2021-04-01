@@ -4,6 +4,7 @@
 #include <iostream>
 
 #include "Renderer/VertexArray.h"
+#include "Renderer/Shader.h"
 
 int main(void)
 {
@@ -47,6 +48,8 @@ int main(void)
     va.AddBuffer(VERTEX, vertices, sizeof(vertices), verticesLayout);
     BufferLayout indicesLayout;
     va.AddBuffer(INDEX, indices, sizeof(indices), indicesLayout);
+
+    Shader shader("basic.vert", "basic.frag");
 
     /* Loop until the user closes the window */
     while (!glfwWindowShouldClose(window))
