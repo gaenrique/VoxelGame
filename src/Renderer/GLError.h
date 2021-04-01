@@ -11,12 +11,12 @@
 	ASSERT(GLLogCall(#x, __FILE__, __LINE__))
 #endif
 
-void GLClearError()
+static void GLClearError()
 {
 	while (glGetError() != GL_NO_ERROR);
 }
 
-bool GLLogCall(const char* function, const char* file, int line)
+static bool GLLogCall(const char* function, const char* file, int line)
 {
 	while (GLenum error = glGetError())
 	{

@@ -1,6 +1,7 @@
 #pragma once
 
 #include <string>
+#include <vector>
 
 class Shader
 {
@@ -16,4 +17,6 @@ private:
 	unsigned int m_RendererID;
 
 	std::string GetSourceCode(const std::string& filepath);
+	void CompileShaders(const std::vector<unsigned int>& shaders, const std::vector<std::string>& source);
+	void LinkShaders(const std::vector<unsigned int>& shaders);
 };
