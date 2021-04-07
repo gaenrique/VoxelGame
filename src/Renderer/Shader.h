@@ -17,6 +17,6 @@ private:
 	unsigned int m_RendererID;
 
 	std::string GetSourceCode(const std::string& filepath);
-	void CompileShaders(const std::vector<unsigned int>& shaders, const std::vector<std::string>& source);
-	void LinkShaders(const std::vector<unsigned int>& shaders);
+	void CompileShader(unsigned int shader, const std::string& source);
+	void LinkShaders(unsigned int vertexShader, unsigned int fragmentShader);
 };

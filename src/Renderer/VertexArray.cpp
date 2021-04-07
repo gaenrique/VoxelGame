@@ -49,11 +49,15 @@ void VertexArray::AddBuffer(BufferType type, const void* data, unsigned int size
 
 void VertexArray::AddBufferAttributes(BufferLayout& layout)
 {
-	for (int i = 0; i < layout.layoutElements.size(); i++)
+	for (unsigned int i = 0; i < layout.layoutElements.size(); i++)
 	{
 		auto element = layout.layoutElements[i];
+		std::cout << "Element size = " << element.size << std::endl;
+		std::cout << "Element normalized = " << element.normalized << std::endl;
+		std::cout << "Stride = " << layout.stride << std::endl;
+		std::cout << "Element offset = " << element.offset << std::endl;
 		GLCall(glEnableVertexAttribArray(i));
-		GLCall(glVertexAttribPointer(i, element.size, GL_FLOAT, element.normalized, layout.stride, element.offset));
+		GLCall(glVertexAttribPointer(i, element.size, element.type, element.normalized, layout.stride, (const GLvoid*)element.offset));
 	}
 }
 

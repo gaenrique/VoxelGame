@@ -20,10 +20,6 @@ struct BufferLayout
 		const void* offset;
 	};
 
-	std::vector<BufferElement> layoutElements;
-	int stride;
-	int currentOffset;
-
 	void InsertLayoutElement(int size, bool normalized)
 	{
 		BufferElement element;
@@ -31,9 +27,14 @@ struct BufferLayout
 		element.type = GL_FLOAT;
 		element.normalized = normalized;
 		element.offset = (void*)currentOffset;
-		currentOffset += size;
-		stride += size;
+		currentOffset += (size * sizeof(float));
+		stride += (size * sizeof(float));
+		layoutElements.push_back(element);
 	}
+
+	std::vector<BufferElement> layoutElements;
+	int stride = 0;
+	int currentOffset = 0;
 };
 
 class VertexArray
