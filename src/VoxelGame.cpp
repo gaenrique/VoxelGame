@@ -45,9 +45,9 @@ int main(void)
     VertexArray va;
     BufferLayout verticesLayout;
     verticesLayout.InsertLayoutElement(3, false);
-    va.AddBuffer(VERTEX, vertices, sizeof(vertices), verticesLayout);
+    va.AddBuffer(VERTEX, vertices, sizeof(vertices), &verticesLayout);
     BufferLayout indicesLayout;
-    va.AddBuffer(INDEX, indices, sizeof(indices), indicesLayout);
+    va.AddBuffer(INDEX, indices, sizeof(indices));
 
     Shader shader("basic.vert", "basic.frag");
 

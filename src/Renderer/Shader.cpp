@@ -12,19 +12,20 @@ Shader::Shader(const std::string& vertex, const std::string& fragment)
 {
 	unsigned int vertexShader = glCreateShader(GL_VERTEX_SHADER);
 	unsigned int fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
-	std::ostringstream vertexPath;
-	std::ostringstream fragmentPath;
+
 	// Relative path from exe file to Shaders file
 	// This enables the constructor arguments to simply be the name of the
 	// shader file
+	std::ostringstream vertexPath;
+	std::ostringstream fragmentPath;
 	vertexPath << "../../../../src/Renderer/Shaders/" << vertex;
 	fragmentPath << "../../../../src/Renderer/Shaders/" << fragment;
-
 	std::string vertexSource = GetSourceCode(vertexPath.str());
 	std::string fragmentSource = GetSourceCode(fragmentPath.str());
 
 	CompileShader(vertexShader, vertexSource);
 	CompileShader(fragmentShader, fragmentSource);
+
 	LinkShaders(vertexShader, fragmentShader);
 }
 
@@ -107,9 +108,13 @@ void Shader::LinkShaders(unsigned int vertexShader, unsigned int fragmentShader)
 		glDeleteShader(vertexShader);
 		glDeleteShader(fragmentShader);
 
-		// Use the infoLog as you see fit.
+		std::cout << "Error encountered while linking shaders:" << std::endl;
+		for (GLchar c : infoLog)
+		{
+			std::cout << c;
+		}
+		std::cout << std::endl;
 
-		// In this simple program, we'll just leave
 		return;
 	}
 
